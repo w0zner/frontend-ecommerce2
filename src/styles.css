@@ -1,1 +1,73 @@
 /* You can add global styles to this file, and also import other style files */
+/* @import "~bootstrap/dist/css/bootstrap.min.css"; */
+body {
+    padding-top: 56px;
+  }
+
+.product-box {
+
+}
+
+.product-box img {
+  width: 250px;
+  padding-bottom: 50px;
+  padding: 5px;
+  background-color:gainsboro;
+  border: 2px solid gainsboro;
+  border-radius: 15px;
+}
+
+.product-show{
+  padding-bottom: 20px;
+}
+
+a.primary-btn:hover{
+  background:#0da8e4;
+  color:#fff;
+  border: 2px solid #0da8e4;
+  border-radius: 5px;
+  padding: 3px;
+}
+
+.price{
+  margin-bottom: 15px;
+  font-weight:800;
+  color:#0da8e4
+}
+
+.product-box h2{
+  margin-bottom: 0;
+  font-size:18px;
+  padding-top: 10px;
+  padding-bottom:0;
+  font-weight:500;
+  color:#585858;
+}
+
+.product-information {
+  padding-left: 5px;
+}
+
+a {
+  color: #0060B6;
+  text-decoration: none;
+}
+
+/*
+ * ----------------------------
+ * Footer
+ * ----------------------------
+ */
+
+
+.footer{
+  padding-top: 25px;
+  padding-bottom: 50px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: black;
+  color: white;
+  text-align: center;
+
+}
