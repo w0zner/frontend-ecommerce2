@@ -7,11 +7,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { HeaderAdminComponent } from './components/header-admin/header-admin.component';
 import { Routes, RouterModule } from '@angular/router';
+import { ProductAddComponent } from './components/product-add/product-add.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'admin/products', component: ProductListComponent}
+  {path: 'admin/products', component: ProductListComponent},
+  {path: 'admin/products/new', component: ProductAddComponent},
+  {path: 'admin/products/update/:id', component: ProductAddComponent},
 ]
 
 @NgModule({
@@ -19,11 +23,13 @@ const routes: Routes = [
     AppComponent,
     HomeComponent,
     ProductListComponent,
-    HeaderAdminComponent
+    HeaderAdminComponent,
+    ProductAddComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],
