@@ -9,6 +9,7 @@ import { HeaderAdminComponent } from './components/header-admin/header-admin.com
 import { Routes, RouterModule } from '@angular/router';
 import { ProductAddComponent } from './components/product-add/product-add.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DetailProductComponent } from './components/cart/detail-product/detail-product.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'admin/products', component: ProductListComponent},
   {path: 'admin/products/new', component: ProductAddComponent},
   {path: 'admin/products/update/:id', component: ProductAddComponent},
+  {path: 'cart/detailProduct', component: DetailProductComponent},
 ]
 
 @NgModule({
@@ -24,7 +26,8 @@ const routes: Routes = [
     HomeComponent,
     ProductListComponent,
     HeaderAdminComponent,
-    ProductAddComponent
+    ProductAddComponent,
+    DetailProductComponent
   ],
   imports: [
     BrowserModule,
