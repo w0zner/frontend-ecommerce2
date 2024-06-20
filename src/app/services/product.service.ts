@@ -20,7 +20,7 @@ export class ProductService {
     return this.http.post<Product>(this.api_raiz + this.url_endpoint, formData);
   }
 
-  deleteProduct(id: number):Observable<any> {
+  deleteProductById(id: number):Observable<any> {
     return this.http.delete(this.api_raiz + this.url_endpoint + "/" + id);
   }
 

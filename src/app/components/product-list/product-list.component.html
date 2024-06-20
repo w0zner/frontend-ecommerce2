@@ -33,16 +33,21 @@
                       </tr>
                   </thead>
                   <tbody >
+                     
+                      
                       <tr *ngFor="let item of products">
                           <td>{{item.code}}</td>
                           <td>{{item.name}}</td>
                           <td>{{item.description}}</td>
                           <td>{{item.price}}</td>
                           <td><button class="btn btn-secondary">Editar</button> </td>
-                          <td><button class="btn btn-danger">Eliminar</button>
+                          <td><button class="btn btn-danger" (click)="deleteProduct(item.id)">Eliminar</button>
                       </tr>
                   </tbody>
               </table>
+              <div class="d-flex justify-content-center" *ngIf="products.length===0">
+                <span class="text-muted">No hay datos que mostrar</span>
+              </div>
             </div>
           </div>
 
