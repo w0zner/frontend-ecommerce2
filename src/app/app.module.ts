@@ -10,6 +10,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProductAddComponent } from './components/product-add/product-add.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DetailProductComponent } from './components/cart/detail-product/detail-product.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 const routes: Routes = [
@@ -33,7 +34,8 @@ const routes: Routes = [
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

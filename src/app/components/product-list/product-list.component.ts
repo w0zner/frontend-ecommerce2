@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/common/product';
 import { ProductService } from 'src/app/services/product.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-product-list',
@@ -27,9 +28,31 @@ export class ProductListComponent implements OnInit {
   }
 
   deleteProduct(id: number) {
-    this.service.deleteProductById(id).subscribe(
-      ()=> this.listProducts()
-    )
+
+    Swal.fire({
+      title: "Estas seguro de Eliminar",
+      text: "Seguro de querer realizar esta acción!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, eliminar!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        this.service.deleteProductById(id).subscribe(
+          ()=> this.listProducts()
+        )
+
+        Swal.fire({
+          title: "Registro eliminado!",
+          text: "El registro fue eliminado satisfactoriamente.",
+          icon: "success"
+        });
+      }
+    });
+
+
   }
 
 }

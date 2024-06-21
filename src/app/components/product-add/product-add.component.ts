@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Product } from 'src/app/common/product';
 import { ProductService } from 'src/app/services/product.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-product-add',
@@ -17,7 +19,8 @@ export class ProductAddComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private productService: ProductService,
               private router: Router,
-              private activatedRoute: ActivatedRoute){
+              private activatedRoute: ActivatedRoute,
+            private toastr: ToastrService){
                 this.productForm = this.fb.group({
                   id: [0],
                   name: ['', Validators.required],
@@ -55,7 +58,12 @@ export class ProductAddComponent implements OnInit {
       );
 
       this.productService.createProduct(product).subscribe(response => {
-        console.log('Product added successfully:', response);
+        if(product.id === 0) {
+          this.toastr.success("Producto agregado exitosamente!","Productos")
+        } else {
+          this.toastr.success("Producto actualizado exitosamente!","Productos")
+        }
+        
         this.router.navigate(['admin/products']);
       }, error => {
         console.error('Error adding product:', error);
@@ -89,6 +97,23 @@ export class ProductAddComponent implements OnInit {
   }
 
   habilitarCambiarImagen() {
-    this.productForm.get('urlImage')?.setValue("");
+
+    Swal.fire({
+      title: "Estas seguro de realizar esta acción",
+      text: "Seguro que quieres cambiar la imagen!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, proseguir!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        this.productForm.get('urlImage')?.setValue("");
+
+      }
+    });
+
+    
   }
 }
