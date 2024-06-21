@@ -1,19 +1,27 @@
 import { Injectable } from '@angular/core';
 import { ItemCart } from '../common/item-cart';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-  private items: Map<number, ItemCart> =new Map<number, ItemCart>();
+  private listSource = new BehaviorSubject<ItemCart[]>([]);
+  currentList = this.listSource.asObservable();
 
+  private items: Map<number, ItemCart> =new Map<number, ItemCart>();
   itemList: ItemCart[] = [];
 
   constructor() { }
 
+  updateList(newList: ItemCart[]) {
+    this.listSource.next(newList);
+  }
+
   addItemCart(itemCart: ItemCart){
     this.items.set(itemCart.productId, itemCart);
+    this.updateList(this.convertToListFromMap());
   }
 
   deleteItemCart(productId: number){
@@ -23,6 +31,7 @@ export class CartService {
         console.log(clave, valor)
       }
     )
+    this.updateList(this.convertToListFromMap());
   }
 
   totalCart(){
@@ -45,5 +54,9 @@ export class CartService {
     );
 
     return this.itemList;
+  }
+
+  totalItems(){
+    return this.items.size;
   }
 }

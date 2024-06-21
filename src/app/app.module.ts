@@ -11,14 +11,17 @@ import { ProductAddComponent } from './components/product-add/product-add.compon
 import { ReactiveFormsModule } from '@angular/forms';
 import { DetailProductComponent } from './components/cart/detail-product/detail-product.component';
 import { ToastrModule } from 'ngx-toastr';
-
+import { HeaderUserComponent } from './components/header-user/header-user.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SumaryOrderComponent } from './components/orders/sumary-order/sumary-order.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'admin/products', component: ProductListComponent},
   {path: 'admin/products/new', component: ProductAddComponent},
   {path: 'admin/products/update/:id', component: ProductAddComponent},
-  {path: 'cart/detailProduct', component: DetailProductComponent},
+  {path: 'product/detail/:id', component: DetailProductComponent},
+  {path: 'cart/sumary', component: SumaryOrderComponent},
 ]
 
 @NgModule({
@@ -28,12 +31,15 @@ const routes: Routes = [
     ProductListComponent,
     HeaderAdminComponent,
     ProductAddComponent,
-    DetailProductComponent
+    DetailProductComponent,
+    HeaderUserComponent,
+    SumaryOrderComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(routes),
     ToastrModule.forRoot()
   ],
