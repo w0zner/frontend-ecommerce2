@@ -1,0 +1,39 @@
+<app-header-admin></app-header-admin>
+<!-- Page Content List Categories-->
+<div class="container">
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3 display-6">
+        Things Store
+    </h1>
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="">Home</a></li>
+        <li class="breadcrumb-item active">Categorías</li>
+    </ol>
+
+    <div class="card" >
+        <div class="card-header d-flex justify-content-between">
+          <h4>Categorias</h4>
+          <a class="btn btn-outline-primary" routerLink="/admin/categories/new">Agregar Categoria</a>
+        </div>
+        <div class="card-body"> 
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of categories">
+                        <td>{{item.name}}</td>                
+                        <td><button class="btn btn-outline-secondary" [routerLink]="['/admin/categories/update/', item.id]">Ver</button> </td>
+                        <td><button class="btn btn-outline-danger" (click)="deleteCategory(item.id)">Eliminar</button>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- /.container -->

@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Category } from 'src/app/common/category';
 import { Product } from 'src/app/common/product';
+import { CategoryService } from 'src/app/services/category.service';
 import { ProductService } from 'src/app/services/product.service';
 import Swal from 'sweetalert2';
 
@@ -15,12 +17,14 @@ export class ProductAddComponent implements OnInit {
 
   productForm: FormGroup;
   selectedFile: File | null = null;
+  categories: Category[] = []
 
   constructor(private fb: FormBuilder,
               private productService: ProductService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
-            private toastr: ToastrService){
+            private toastr: ToastrService,
+          private categoryService:CategoryService){
                 this.productForm = this.fb.group({
                   id: [0],
                   name: ['', Validators.required],
@@ -29,12 +33,13 @@ export class ProductAddComponent implements OnInit {
                   urlImage: ['', Validators.required],
                   price: [0, [Validators.required, Validators.min(0)]],
                   //userId: ['', Validators.required],
-                  //categoryId: ['', Validators.required],
+                  categoryId: [''],
                 });
   }
 
   ngOnInit(): void {
     this.getProductById();
+    this.getCategoryList();
   }
 
   onFileSelected(event: any) {
@@ -97,7 +102,6 @@ export class ProductAddComponent implements OnInit {
   }
 
   habilitarCambiarImagen() {
-
     Swal.fire({
       title: "Estas seguro de realizar esta acción",
       text: "Seguro que quieres cambiar la imagen!",
@@ -113,7 +117,11 @@ export class ProductAddComponent implements OnInit {
 
       }
     });
+  }
 
-    
+  getCategoryList(){
+    this.categoryService.getCategories().subscribe(
+      data => this.categories = data
+    )
   }
 }

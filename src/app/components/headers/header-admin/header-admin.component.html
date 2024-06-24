@@ -3,9 +3,10 @@
 
     <!-- <span class="text-body-secondary">Acciones</span> -->
     <div class="list-group list-group-flush">
-      <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+      <a [routerLink]="['/admin/products']" class="list-group-item list-group-item-action active" aria-current="true">
         Productos
       </a>
+      <a [routerLink]="['/admin/categories']" class="list-group-item list-group-item-action">Categorias</a>
       <a href="#" class="list-group-item list-group-item-action">Ordenes</a>
       <a href="#" class="list-group-item list-group-item-action">Usuarios</a>
       <a href="#" class="list-group-item list-group-item-action">Salir</a>

@@ -16,9 +16,16 @@ export class HeaderUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartService.currentList.subscribe(list => {
-      this.count = list.length;
+      this.count = 0
+      list.forEach(
+        item => {
+          
+          this.count += item.quantity
+          console.log("item count ", this.count)
+        }
+      )
+      
     })
-    //this.count = this.cartService.totalItems();
   }
 
 

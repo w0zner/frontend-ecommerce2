@@ -34,7 +34,7 @@
 
         <div class="form-group col-12 mb-2">
           <label for="description">Descripción:</label>
-          <input id="description" formControlName="description" class="form-control"/>
+          <textarea class="form-control" aria-label="With textarea" id="description" formControlName="description"></textarea>
         </div>
 
         <div class="form-group col-4 mb-2">
@@ -47,13 +47,24 @@
           <input id="urlImage" formControlName="urlImage" />
         </div> -->
 
-        <div class="form-group col-4 ">
+        <div class="form-group col-4 mb-2">
           <label for="image">Imagen:</label>
           <div *ngIf="productForm.get('urlImage')?.value != ''">
             <img src="{{productForm.get('urlImage')?.value}}" alt="Imagen de producto" style="width: 30%; border-radius: 5px; margin-right: 8px;">
             <button type="button" class="btn btn-outline-secondary btn-sm" (click)="habilitarCambiarImagen()">Cambiar Imagen</button>
           </div>
           <input id="image" type="file" (change)="onFileSelected($event)" class="form-control" *ngIf="productForm.get('urlImage')?.value === ''"/>
+        </div>
+
+        <div class="form-group col-6 mb-2">
+          <label class="control-label col-sm-4" for="nombre">Elija una categoría:</label>
+          <div class="col-sm-10">
+            <div class="combo-box">
+              <select class="form-select" name="category" formControlName="categoryId" aria-label="Default select example">
+                <option *ngFor="let item of categories" [value]="item.id">{{item.name}}</option>
+              </select>
+            </div>
+          </div>
         </div>
 
         <button type="submit" class="btn btn-success mt-4">

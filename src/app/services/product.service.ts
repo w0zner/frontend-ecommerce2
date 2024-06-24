@@ -35,7 +35,7 @@ export class ProductService {
       urlImage: product.urlImage,
       price: product.price,
       userId: 1,//product.userId,
-      categoryId: 2//product.categoryId
+      categoryId: product.categoryId
     })], { type: "application/json" }));
     if(product.image) {
       formData.append('image', product.image);

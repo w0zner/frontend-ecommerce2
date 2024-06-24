@@ -10,7 +10,7 @@
 
           <ol class="breadcrumb">
               <li class="breadcrumb-item"><a routerLink="">Home</a></li>
-              <li class="breadcrumb-item active">Ver Productos</li>
+              <li class="breadcrumb-item active">Productos</li>
           </ol>
 
           <div class="card" >
@@ -36,7 +36,7 @@
                           <td>{{item.name}}</td>
                           <td>{{item.description}}</td>
                           <td>{{item.price}}</td>
-                          <td><button class="btn btn-outline-secondary" [routerLink]="['/admin/products/update/', item.id]">Editar</button> </td>
+                          <td><button class="btn btn-outline-secondary" [routerLink]="['/admin/products/update/', item.id]">Ver</button> </td>
                           <td><button class="btn btn-outline-danger" (click)="deleteProduct(item.id)"> <span class="mdi mdi-trash-can"></span>Eliminar</button>
                       </tr>
                   </tbody>

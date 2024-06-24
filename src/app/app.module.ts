@@ -4,22 +4,27 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ProductListComponent } from './components/product-list/product-list.component';
-import { HeaderAdminComponent } from './components/header-admin/header-admin.component';
 import { Routes, RouterModule } from '@angular/router';
-import { ProductAddComponent } from './components/product-add/product-add.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DetailProductComponent } from './components/cart/detail-product/detail-product.component';
 import { ToastrModule } from 'ngx-toastr';
-import { HeaderUserComponent } from './components/header-user/header-user.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SumaryOrderComponent } from './components/orders/sumary-order/sumary-order.component';
+import { CategoryListComponent } from './components/category/category-list/category-list.component';
+import { CategoryAddComponent } from './components/category/category-add/category-add.component';
+import { ProductListComponent } from './components/product/product-list/product-list.component';
+import { HeaderAdminComponent } from './components/headers/header-admin/header-admin.component';
+import { ProductAddComponent } from './components/product/product-add/product-add.component';
+import { HeaderUserComponent } from './components/headers/header-user/header-user.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'admin/products', component: ProductListComponent},
   {path: 'admin/products/new', component: ProductAddComponent},
   {path: 'admin/products/update/:id', component: ProductAddComponent},
+  {path: 'admin/categories', component: CategoryListComponent},
+  {path: 'admin/categories/new', component: CategoryAddComponent},
+  {path: 'admin/categories/update/:id', component: CategoryAddComponent},
   {path: 'product/detail/:id', component: DetailProductComponent},
   {path: 'cart/sumary', component: SumaryOrderComponent},
 ]
@@ -33,7 +38,9 @@ const routes: Routes = [
     ProductAddComponent,
     DetailProductComponent,
     HeaderUserComponent,
-    SumaryOrderComponent
+    SumaryOrderComponent,
+    CategoryListComponent,
+    CategoryAddComponent
   ],
   imports: [
     BrowserModule,
