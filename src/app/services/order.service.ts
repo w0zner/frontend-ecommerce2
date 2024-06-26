@@ -2,30 +2,30 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Order } from '../common/order';
+import { API_URL } from '../common/app.constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
-  private api_raiz = "http://localhost:3000";
-  private url_endpoint = "/api/v1/orders"
+  private endpoint = "/api/v1/orders"
 
   constructor(private http: HttpClient) { }
 
   createOrder(order: Order):Observable<Order>{
-    return this.http.post<Order>(this.api_raiz + this.url_endpoint, order)
+    return this.http.post<Order>(API_URL + this.endpoint, order)
   }
 
   updateOrder(formData:any):Observable<any>{
-    return this.http.post(this.api_raiz + this.url_endpoint + "/update/state/order", formData)
+    return this.http.post(API_URL + this.endpoint + "/update/state/order", formData)
   }
 
   getOrderByUser(userId: number):Observable<Order[]> {
-    return this.http.get<Order[]>(this.api_raiz + this.url_endpoint + "/user-id/" + userId)
+    return this.http.get<Order[]>(API_URL + this.endpoint + "/user-id/" + userId)
   }
 
   getOrderById(id: number):Observable<Order> {
-    return this.http.get<Order>(this.api_raiz + this.url_endpoint + "/" + id)
+    return this.http.get<Order>(API_URL + this.endpoint + "/" + id)
   }
 
 

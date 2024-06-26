@@ -23,8 +23,8 @@ export class ProductAddComponent implements OnInit {
               private productService: ProductService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
-            private toastr: ToastrService,
-          private categoryService:CategoryService){
+              private toastr: ToastrService,
+              private categoryService:CategoryService){
                 this.productForm = this.fb.group({
                   id: [0],
                   name: ['', Validators.required],
@@ -68,7 +68,7 @@ export class ProductAddComponent implements OnInit {
         } else {
           this.toastr.success("Producto actualizado exitosamente!","Productos")
         }
-        
+
         this.router.navigate(['admin/products']);
       }, error => {
         console.error('Error adding product:', error);

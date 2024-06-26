@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ItemCart } from 'src/app/common/item-cart';
 import { Product } from 'src/app/common/product';
 import { CartService } from 'src/app/services/cart.service';
+import { HomeService } from 'src/app/services/home.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -16,7 +17,11 @@ export class DetailProductComponent implements OnInit {
 
   cartForm: FormGroup;
 
-  constructor(private productService: ProductService, private cartService: CartService, private activatedRoute: ActivatedRoute, private fb: FormBuilder, private toastr: ToastrService){
+  constructor(private homeService: HomeService,
+              private cartService: CartService,
+              private activatedRoute: ActivatedRoute,
+              private fb: FormBuilder,
+              private toastr: ToastrService){
     this.cartForm = this.fb.group({
       id: [0],
       name: ['', Validators.required],
@@ -39,7 +44,7 @@ export class DetailProductComponent implements OnInit {
       data => {
         let id = data['id']
         if(id){
-          this.productService.getProductById(id).subscribe(
+          this.homeService.getProductById(id).subscribe(
             response => {
               this.cartForm.patchValue({
                 id: response.id,

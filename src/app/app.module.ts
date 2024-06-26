@@ -16,6 +16,8 @@ import { ProductListComponent } from './components/product/product-list/product-
 import { HeaderAdminComponent } from './components/headers/header-admin/header-admin.component';
 import { ProductAddComponent } from './components/product/product-add/product-add.component';
 import { HeaderUserComponent } from './components/headers/header-user/header-user.component';
+import { RegistrationComponent } from './components/authentication/registration/registration.component';
+import { LoginComponent } from './components/authentication/login/login.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -27,6 +29,8 @@ const routes: Routes = [
   {path: 'admin/categories/update/:id', component: CategoryAddComponent},
   {path: 'product/detail/:id', component: DetailProductComponent},
   {path: 'cart/sumary', component: SumaryOrderComponent},
+  {path: 'user/register', component: RegistrationComponent},
+  {path: 'user/login', component: LoginComponent},
 ]
 
 @NgModule({
@@ -40,7 +44,9 @@ const routes: Routes = [
     HeaderUserComponent,
     SumaryOrderComponent,
     CategoryListComponent,
-    CategoryAddComponent
+    CategoryAddComponent,
+    RegistrationComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

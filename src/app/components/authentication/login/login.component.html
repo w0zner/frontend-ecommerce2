@@ -1,0 +1,34 @@
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-6 ">
+      <div class="card mt-4 pl-4 pr-4">
+        <div class="card-header">
+          <h5>Acceso</h5>
+        </div>
+        <div class="card-body">
+          <form  method="post" enctype="multipart/form-data" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group mb-3">
+              <input type="email" class="form-control" id="email" name="email" placeholder="Email" required autocomplete="off" formControlName="username">
+            </div>
+            <div class="form-group mb-3">
+              <input type="password" class="form-control" id="password" name="password" placeholder="Password" required formControlName="password">
+            </div>
+            <div class="form-group mb-3">
+              <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-success"> <span class="glyphicon glyphicon-ok"></span> Ingresar</button>
+              </div>
+            </div>
+          </form>
+
+          <div class="col-12">
+            <div class="alert alert-info" role="alert">
+              Si aún no tiene cuenta,<a [routerLink]="['/user/register']" style="text-decoration: none; color: cadetblue;"  class="card-link"> Registrarse aquí</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <!-- /.container -->
