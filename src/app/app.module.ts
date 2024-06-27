@@ -19,17 +19,19 @@ import { HeaderUserComponent } from './components/headers/header-user/header-use
 import { RegistrationComponent } from './components/authentication/registration/registration.component';
 import { LoginComponent } from './components/authentication/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { authGuard } from './guards/auth.guard';
+import { authAdminGuard } from './guards/auth-admin.guard';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'admin/products', component: ProductListComponent},
-  {path: 'admin/products/new', component: ProductAddComponent},
-  {path: 'admin/products/update/:id', component: ProductAddComponent},
-  {path: 'admin/categories', component: CategoryListComponent},
-  {path: 'admin/categories/new', component: CategoryAddComponent},
-  {path: 'admin/categories/update/:id', component: CategoryAddComponent},
+  {path: 'admin/products', component: ProductListComponent, canActivate: [authAdminGuard]},
+  {path: 'admin/products/new', component: ProductAddComponent, canActivate: [authAdminGuard]},
+  {path: 'admin/products/update/:id', component: ProductAddComponent, canActivate: [authAdminGuard]},
+  {path: 'admin/categories', component: CategoryListComponent, canActivate: [authAdminGuard]},
+  {path: 'admin/categories/new', component: CategoryAddComponent, canActivate: [authAdminGuard]},
+  {path: 'admin/categories/update/:id', component: CategoryAddComponent, canActivate: [authAdminGuard]},
   {path: 'product/detail/:id', component: DetailProductComponent},
-  {path: 'cart/sumary', component: SumaryOrderComponent},
+  {path: 'cart/sumary', component: SumaryOrderComponent, canActivate: [authGuard]},
   {path: 'user/register', component: RegistrationComponent},
   {path: 'user/login', component: LoginComponent},
   {path: 'logout', component: LogoutComponent},

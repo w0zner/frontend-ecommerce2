@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" *ngIf="active">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Things Store</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -24,8 +24,49 @@
             </span>
           </a>
         </li>
-        <li class="nav-item"><a class="nav-link" [routerLink]="['/user/login']">Login</a></li>
+        <li class="nav-item"><a class="nav-link" [routerLink]="['/user/login']" *ngIf="!logged">Login</a></li>
+        <!-- <li class="nav-item"><a class="nav-link" [routerLink]="['/logout']" >Logout</a></li> -->
+        <li class="nav-item dropdown" *ngIf="logged">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{usuario}}
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Mis datos</a></li>
+            <li><a class="dropdown-item" href="#">Mis ordenes</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" [routerLink]="['/logout']">Salir</a></li>
+          </ul>
+        </li>
+
       </ul>
     </div>
   </div>
 </nav>
+
+<!-- <div *ngIf="active">
+  <div class="collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
+    <div class="bg-dark p-1">
+
+      <div class="list-group list-group-flush">
+        <a [routerLink]="['/cart/sumary']" class="list-group-item list-group-item-action" aria-current="true">
+          Carrito
+            <span class="position-absolute top-1 start-99 translate-middle badge rounded-pill bg-danger" *ngIf="count != 0">
+              {{count}}
+              <span class="visually-hidden">unread messages</span>
+            </span>
+        </a>
+        <a [routerLink]="['/admin/categories']" class="list-group-item list-group-item-action">Mis datos</a>
+        <a href="#" class="list-group-item list-group-item-action">Mis Ordenes</a>
+        <a [routerLink]="['/logout']" class="list-group-item list-group-item-action">Salir</a>
+      </div>
+    </div>
+  </div>
+  <nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <h5 class="text-white h5 pr-8">Usuario</h5>
+    </div>
+  </nav>
+</div> -->

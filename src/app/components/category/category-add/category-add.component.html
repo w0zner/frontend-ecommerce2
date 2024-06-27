@@ -1,5 +1,8 @@
-<!-- Page Content Add Categories -->
+
+<app-header-user></app-header-user>
 <app-header-admin></app-header-admin>
+
+<!-- Page Content Add Categories -->
 <div class="container">
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-4 mb-3 display-6">
@@ -15,7 +18,7 @@
     <div class="card" >
         <div class="card-header">
             <h4>Agregar Categoría</h4>
-        </div>    
+        </div>
         <div class="card-body">
             <form class="form-horizontal" enctype="multipart/form-data" [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">

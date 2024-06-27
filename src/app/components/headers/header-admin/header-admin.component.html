@@ -1,27 +1,29 @@
-<div class="collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
-  <div class="bg-dark p-1">
+<div *ngIf="active">
+  <div class="collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
+    <div class="bg-dark p-1">
 
-    <!-- <span class="text-body-secondary">Acciones</span> -->
-    <div class="list-group list-group-flush">
-      <a [routerLink]="['/admin/products']" class="list-group-item list-group-item-action active" aria-current="true">
-        Productos
-      </a>
-      <a [routerLink]="['/admin/categories']" class="list-group-item list-group-item-action">Categorias</a>
-      <a href="#" class="list-group-item list-group-item-action">Ordenes</a>
-      <a href="#" class="list-group-item list-group-item-action">Usuarios</a>
-      <a [routerLink]="['/logout']" class="list-group-item list-group-item-action">Salir</a>
-      <!-- <a class="list-group-item list-group-item-action disabled" aria-disabled="true">A disabled link item</a> -->
+      <!-- <span class="text-body-secondary">Acciones</span> -->
+      <div class="list-group list-group-flush">
+        <a [routerLink]="['/admin/products']" class="list-group-item list-group-item-action" aria-current="true">
+          Productos
+        </a>
+        <a [routerLink]="['/admin/categories']" class="list-group-item list-group-item-action">Categorias</a>
+        <a href="#" class="list-group-item list-group-item-action">Ordenes</a>
+        <a href="#" class="list-group-item list-group-item-action">Usuarios</a>
+        <a [routerLink]="['/logout']" class="list-group-item list-group-item-action">Salir</a>
+        <!-- <a class="list-group-item list-group-item-action disabled" aria-disabled="true">A disabled link item</a> -->
+      </div>
     </div>
   </div>
+  <nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <h5 class="text-white h5 pr-8">ADMIN</h5>
+    </div>
+  </nav>
 </div>
-<nav class="navbar navbar-dark bg-dark fixed-top">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <h5 class="text-white h5 pr-8">ADMIN</h5>
-  </div>
-</nav>
 
 
 

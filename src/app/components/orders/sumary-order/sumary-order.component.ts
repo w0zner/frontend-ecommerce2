@@ -33,14 +33,10 @@ export class SumaryOrderComponent implements OnInit {
   constructor(private cartService:CartService, private userService: UserService, private orderService: OrderService, private sesionStorage: SessionStorageService, private router: Router){}
 
   ngOnInit(): void {
-    if(this.sesionStorage.getItem('userData') != null) {
       this.items= this.cartService.convertToListFromMap();
       this.total= this.cartService.totalCart();
       this.userId= this.sesionStorage.getItem('userData').id;
       this.getUser(this.userId);
-    } else {
-      this.router.navigate(['/user/login'])
-    }
   }
 
   generateOrder(){
@@ -61,7 +57,7 @@ export class SumaryOrderComponent implements OnInit {
           icon: "success",
           title: "Orden Nro.[" + response.id + "] generada exitosamente",
           showConfirmButton: false
-          
+
         });
 
         //this.toastr.success("")  Orden  generada exitosamente", "Confirmación de compra

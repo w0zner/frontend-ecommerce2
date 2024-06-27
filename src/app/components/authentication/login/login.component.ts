@@ -36,12 +36,20 @@ export class LoginComponent {
         next: (response) => {
           this.sesionStorage.setItem('userData', response)
 
-          let nombre= response.nombre
+          let nombre= response.nombre != null || response.nombre != undefined ? response.nombre : userDto.username
 
           this.toastr.success("Bienvenido " +  nombre + "!", "Sign In");
           this.router.navigate(['']);
         },
-        error: error => console.error('Error al loguearse ', error)
+        error: (error) => {
+          console.error('Error al loguearse ', error)
+          if(error.status===403) {
+            this.toastr.error("Verifique sus datos", "Error");
+          }
+          if(error.status===500) {
+            this.toastr.error("Comuniquese con el administrador", "Error");
+          }
+        }
       })
   }
 

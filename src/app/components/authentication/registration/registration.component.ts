@@ -23,8 +23,8 @@ export class RegistrationComponent {
     this.registerForm = this.fb.group({
       id: [0],
       username: ['', Validators.required],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
       email: ['', Validators.required],
       address: ['', Validators.required],
       cellphone: ['', Validators.required],
@@ -37,15 +37,15 @@ export class RegistrationComponent {
       const user = new User(
         this.registerForm.value.id,
         this.registerForm.value.email,
-        this.registerForm.value.firstName,
-        this.registerForm.value.lastName,
+        this.registerForm.value.firstname,
+        this.registerForm.value.lastname,
         this.registerForm.value.email,
         this.registerForm.value.address,
         this.registerForm.value.cellphone,
         this.registerForm.value.userType,
         this.registerForm.value.password
       );
-
+        console.log(user)
       this.authenticationService.register(user).subscribe({
         next: (response) => {
           this.toastr.success("Registro exitoso!","Sign Up")
