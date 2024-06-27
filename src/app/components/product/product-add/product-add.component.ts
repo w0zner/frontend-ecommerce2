@@ -6,6 +6,7 @@ import { Category } from 'src/app/common/category';
 import { Product } from 'src/app/common/product';
 import { CategoryService } from 'src/app/services/category.service';
 import { ProductService } from 'src/app/services/product.service';
+import { SessionStorageService } from 'src/app/services/session-storage.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -18,13 +19,15 @@ export class ProductAddComponent implements OnInit {
   productForm: FormGroup;
   selectedFile: File | null = null;
   categories: Category[] = []
+  user: string= "";
 
   constructor(private fb: FormBuilder,
               private productService: ProductService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
               private toastr: ToastrService,
-              private categoryService:CategoryService){
+              private categoryService:CategoryService,
+              private sesionStorage: SessionStorageService){
                 this.productForm = this.fb.group({
                   id: [0],
                   name: ['', Validators.required],
@@ -32,7 +35,7 @@ export class ProductAddComponent implements OnInit {
                   description: ['', Validators.required],
                   urlImage: ['', Validators.required],
                   price: [0, [Validators.required, Validators.min(0)]],
-                  //userId: ['', Validators.required],
+                  userId: ['', Validators.required],
                   categoryId: [''],
                 });
   }
@@ -40,6 +43,10 @@ export class ProductAddComponent implements OnInit {
   ngOnInit(): void {
     this.getProductById();
     this.getCategoryList();
+    this.user= this.sesionStorage.getItem('userData').id;
+    this.productForm.patchValue({
+      userId: this.user.toString(),
+    })
   }
 
   onFileSelected(event: any) {

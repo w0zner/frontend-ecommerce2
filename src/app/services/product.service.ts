@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from '../common/product';
 import { API_URL } from '../common/app.constants';
+import { HeaderService } from './header.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,22 +11,14 @@ import { API_URL } from '../common/app.constants';
 export class ProductService {
   private endpoint = "/api/v1/admin/products"
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private header: HeaderService) { }
 
   getProducts():Observable<Product[]> {
-    return this.http.get<Product[]>(API_URL + this.endpoint);
+    return this.http.get<Product[]>(API_URL + this.endpoint, { headers: this.header.headers });
   }
 
   createProduct(product: Product):Observable<any> {
     const formData = new FormData();
-    // formData.append('name', product.name);
-    // formData.append('code', product.code);
-    // formData.append('description', product.description);
-    // formData.append('urlImage', "");
-    // //formData.append('image', product.image);
-    // formData.append('price', product.price.toString());
-    // formData.append('userId', "1");
-    // formData.append('categoryId', "2");
 
     formData.append('product', new Blob([JSON.stringify({
       id: product.id,
@@ -44,14 +37,14 @@ export class ProductService {
     }
 
 
-    return this.http.post<Product>(API_URL + this.endpoint, formData);
+    return this.http.post<Product>(API_URL + this.endpoint, formData, { headers: this.header.headers });
   }
 
   deleteProductById(id: number):Observable<any> {
-    return this.http.delete(API_URL + this.endpoint + "/" + id);
+    return this.http.delete(API_URL + this.endpoint + "/" + id, { headers: this.header.headers });
   }
 
   getProductById(id: number):Observable<Product> {
-    return this.http.get<Product>(API_URL + this.endpoint + "/" + id);
+    return this.http.get<Product>(API_URL + this.endpoint + "/" + id, { headers: this.header.headers });
   }
 }

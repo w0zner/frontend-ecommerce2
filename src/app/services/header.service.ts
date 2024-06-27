@@ -11,11 +11,10 @@ export class HeaderService {
   public headers: HttpHeaders= new HttpHeaders;
 
   constructor(private sesionStorage: SessionStorageService) {
-    this.token= this.sesionStorage.getItem('userData').token;
+    this.token= this.sesionStorage.getItem('userData')?.token;
 
     this.headers= new HttpHeaders(
       {
-        'Content-Type': 'application/json',
         'Authorization': `${this.token}`
       }
     )

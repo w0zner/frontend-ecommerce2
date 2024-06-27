@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ItemCart } from 'src/app/common/item-cart';
 import { Order } from 'src/app/common/order';
@@ -6,6 +7,7 @@ import { OrderProduct } from 'src/app/common/order-product';
 import { OrderState } from 'src/app/common/order-state';
 import { CartService } from 'src/app/services/cart.service';
 import { OrderService } from 'src/app/services/order.service';
+import { SessionStorageService } from 'src/app/services/session-storage.service';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
@@ -25,15 +27,20 @@ export class SumaryOrderComponent implements OnInit {
   address: string= "";
 
   orderProducts: OrderProduct[] = []
-  userId= 1;
+  userId: number= 0;
 
 
-  constructor(private cartService:CartService, private userService: UserService, private orderService: OrderService){}
+  constructor(private cartService:CartService, private userService: UserService, private orderService: OrderService, private sesionStorage: SessionStorageService, private router: Router){}
 
   ngOnInit(): void {
-    this.items= this.cartService.convertToListFromMap();
-    this.total= this.cartService.totalCart();
-    this.getUser(this.userId);
+    if(this.sesionStorage.getItem('userData') != null) {
+      this.items= this.cartService.convertToListFromMap();
+      this.total= this.cartService.totalCart();
+      this.userId= this.sesionStorage.getItem('userData').id;
+      this.getUser(this.userId);
+    } else {
+      this.router.navigate(['/user/login'])
+    }
   }
 
   generateOrder(){
@@ -48,6 +55,7 @@ export class SumaryOrderComponent implements OnInit {
 
     this.orderService.createOrder(order).subscribe(
       response => {
+        this.sesionStorage.setItem('order', response);
         Swal.fire({
           position: "top-end",
           icon: "success",
