@@ -21,6 +21,8 @@ import { LoginComponent } from './components/authentication/login/login.componen
 import { LogoutComponent } from './components/logout/logout.component';
 import { authGuard } from './guards/auth.guard';
 import { authAdminGuard } from './guards/auth-admin.guard';
+import { UserListComponent } from './components/users/user-list/user-list.component';
+import { UserAddComponent } from './components/users/user-add/user-add.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -30,6 +32,9 @@ const routes: Routes = [
   {path: 'admin/categories', component: CategoryListComponent, canActivate: [authAdminGuard]},
   {path: 'admin/categories/new', component: CategoryAddComponent, canActivate: [authAdminGuard]},
   {path: 'admin/categories/update/:id', component: CategoryAddComponent, canActivate: [authAdminGuard]},
+  {path: 'admin/users', component: UserListComponent, canActivate: [authAdminGuard]},
+  {path: 'admin/users/register', component: UserAddComponent, canActivate: [authAdminGuard]},
+  {path: 'admin/users/update/:id', component: UserAddComponent, canActivate: [authAdminGuard]},
   {path: 'product/detail/:id', component: DetailProductComponent},
   {path: 'cart/sumary', component: SumaryOrderComponent, canActivate: [authGuard]},
   {path: 'user/register', component: RegistrationComponent},
@@ -51,7 +56,9 @@ const routes: Routes = [
     CategoryAddComponent,
     RegistrationComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    UserListComponent,
+    UserAddComponent
   ],
   imports: [
     BrowserModule,

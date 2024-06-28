@@ -7,6 +7,7 @@ import { Product } from 'src/app/common/product';
 import { CartService } from 'src/app/services/cart.service';
 import { HomeService } from 'src/app/services/home.service';
 import { ProductService } from 'src/app/services/product.service';
+import { SessionStorageService } from 'src/app/services/session-storage.service';
 
 @Component({
   selector: 'app-detail-product',
@@ -16,12 +17,14 @@ import { ProductService } from 'src/app/services/product.service';
 export class DetailProductComponent implements OnInit {
 
   cartForm: FormGroup;
+  userType: string=""
 
   constructor(private homeService: HomeService,
               private cartService: CartService,
               private activatedRoute: ActivatedRoute,
               private fb: FormBuilder,
-              private toastr: ToastrService){
+              private toastr: ToastrService,
+              private sesionStorage: SessionStorageService){
     this.cartForm = this.fb.group({
       id: [0],
       name: ['', Validators.required],
@@ -37,6 +40,7 @@ export class DetailProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProductById();
+    this.userType= this.sesionStorage.getItem('userData').type;
   }
 
   getProductById(){

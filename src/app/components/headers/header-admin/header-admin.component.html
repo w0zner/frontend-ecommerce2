@@ -9,7 +9,7 @@
         </a>
         <a [routerLink]="['/admin/categories']" class="list-group-item list-group-item-action">Categorias</a>
         <a href="#" class="list-group-item list-group-item-action">Ordenes</a>
-        <a href="#" class="list-group-item list-group-item-action">Usuarios</a>
+        <a [routerLink]="['/admin/users']" class="list-group-item list-group-item-action">Usuarios</a>
         <a [routerLink]="['/logout']" class="list-group-item list-group-item-action">Salir</a>
         <!-- <a class="list-group-item list-group-item-action disabled" aria-disabled="true">A disabled link item</a> -->
       </div>
@@ -20,7 +20,7 @@
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <h5 class="text-white h5 pr-8">ADMIN</h5>
+      <h4 class="text-white h5 pr-8">ADMIN: {{usuario}}</h4>
     </div>
   </nav>
 </div>

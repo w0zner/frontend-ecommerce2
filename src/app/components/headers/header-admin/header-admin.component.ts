@@ -9,6 +9,7 @@ import { SessionStorageService } from 'src/app/services/session-storage.service'
 export class HeaderAdminComponent implements OnInit {
 
   public active: boolean= false;
+  public usuario: string= "";
 
   constructor(private sessionStorage: SessionStorageService){}
 
@@ -18,6 +19,7 @@ export class HeaderAdminComponent implements OnInit {
 
   isActive(){
     let type: string= this.sessionStorage.getItem('userData')?.type;
+    this.usuario=this.sessionStorage.getItem('userData')?.nombre;
     if(type !== null && type==='ADMIN'){
       this.active=true;
     }

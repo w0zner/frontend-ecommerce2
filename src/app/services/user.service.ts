@@ -17,4 +17,8 @@ export class UserService {
   getUserById(id:number):Observable<User>{
     return this.http.get<User>(API_URL + this.endpoint + "/" + id, { headers: this.header.headers });
   }
+
+  getUsers():Observable<User[]>{
+    return this.http.get<User[]>(API_URL + this.endpoint, { headers: this.header.headers })
+  }
 }
