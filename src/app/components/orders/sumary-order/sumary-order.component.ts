@@ -33,11 +33,11 @@ export class SumaryOrderComponent implements OnInit {
 
 
   constructor(
-    private cartService:CartService, 
-    private userService: UserService, 
-    private orderService: OrderService, 
-    private sesionStorage: SessionStorageService, 
-    private router: Router, 
+    private cartService:CartService,
+    private userService: UserService,
+    private orderService: OrderService,
+    private sesionStorage: SessionStorageService,
+    private router: Router,
     private paymentService: PaymentService
   ){}
 
@@ -81,7 +81,16 @@ export class SumaryOrderComponent implements OnInit {
         console.log(data)
         window.location.href= urlPayment;
       },
-      error: (error) => console.log(error.status, error)
+      error: (error) => {
+        console.log(error.status, error)
+        Swal.fire({
+          position: "bottom-end",
+          icon: "error",
+          title: "Ocurrio un error al querer realizar el pago con Paypal",
+          showConfirmButton: false
+
+        });
+      }
     })
   }
 

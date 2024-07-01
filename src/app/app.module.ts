@@ -25,6 +25,7 @@ import { UserListComponent } from './components/users/user-list/user-list.compon
 import { UserAddComponent } from './components/users/user-add/user-add.component';
 import { OrderListComponent } from './components/inbox/order-list/order-list.component';
 import { UserViewComponent } from './components/inbox/user-view/user-view.component';
+import { PaymentSuccessComponent } from './components/orders/payment-success/payment-success.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -43,6 +44,8 @@ const routes: Routes = [
   {path: 'user/register', component: RegistrationComponent},
   {path: 'user/login', component: LoginComponent},
   {path: 'logout', component: LogoutComponent},
+
+  {path: 'payment/success', component: PaymentSuccessComponent},
 ]
 
 @NgModule({
@@ -63,7 +66,8 @@ const routes: Routes = [
     UserListComponent,
     UserAddComponent,
     OrderListComponent,
-    UserViewComponent
+    UserViewComponent,
+    PaymentSuccessComponent
   ],
   imports: [
     BrowserModule,

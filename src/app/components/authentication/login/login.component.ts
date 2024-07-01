@@ -38,7 +38,7 @@ export class LoginComponent {
 
           let nombre= response.nombre != null || response.nombre != undefined ? response.nombre : userDto.username
 
-          this.toastr.success("Bienvenido " +  nombre + "!", "Sign In");
+          this.toastr.info("Bienvenido " +  nombre + "!", "Sign In");
           this.router.navigate(['']);
         },
         error: (error) => {
