@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { DataPayment } from 'src/app/common/data-payment';
 import { ItemCart } from 'src/app/common/item-cart';
 import { Order } from 'src/app/common/order';
 import { OrderProduct } from 'src/app/common/order-product';
 import { OrderState } from 'src/app/common/order-state';
 import { CartService } from 'src/app/services/cart.service';
 import { OrderService } from 'src/app/services/order.service';
+import { PaymentService } from 'src/app/services/payment.service';
 import { SessionStorageService } from 'src/app/services/session-storage.service';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
@@ -30,7 +32,14 @@ export class SumaryOrderComponent implements OnInit {
   userId: number= 0;
 
 
-  constructor(private cartService:CartService, private userService: UserService, private orderService: OrderService, private sesionStorage: SessionStorageService, private router: Router){}
+  constructor(
+    private cartService:CartService, 
+    private userService: UserService, 
+    private orderService: OrderService, 
+    private sesionStorage: SessionStorageService, 
+    private router: Router, 
+    private paymentService: PaymentService
+  ){}
 
   ngOnInit(): void {
       this.items= this.cartService.convertToListFromMap();
@@ -63,6 +72,17 @@ export class SumaryOrderComponent implements OnInit {
         //this.toastr.success("")  Orden  generada exitosamente", "Confirmación de compra
       }
     )
+
+    let urlPayment;
+    let dataPayment= new DataPayment("PAYPAL", this.total.toString(), "USD", "COMPRA")
+    this.paymentService.getUrlPaypalPayment(dataPayment).subscribe({
+      next: (data) => {
+        urlPayment= data.url;
+        console.log(data)
+        window.location.href= urlPayment;
+      },
+      error: (error) => console.log(error.status, error)
+    })
   }
 
   deleteItem(productId: number){

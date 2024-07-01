@@ -23,6 +23,8 @@ import { authGuard } from './guards/auth.guard';
 import { authAdminGuard } from './guards/auth-admin.guard';
 import { UserListComponent } from './components/users/user-list/user-list.component';
 import { UserAddComponent } from './components/users/user-add/user-add.component';
+import { OrderListComponent } from './components/inbox/order-list/order-list.component';
+import { UserViewComponent } from './components/inbox/user-view/user-view.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -35,6 +37,7 @@ const routes: Routes = [
   {path: 'admin/users', component: UserListComponent, canActivate: [authAdminGuard]},
   {path: 'admin/users/register', component: UserAddComponent, canActivate: [authAdminGuard]},
   {path: 'admin/users/update/:id', component: UserAddComponent, canActivate: [authAdminGuard]},
+  {path: 'user/orders', component: OrderListComponent, canActivate: [authGuard]},
   {path: 'product/detail/:id', component: DetailProductComponent},
   {path: 'cart/sumary', component: SumaryOrderComponent, canActivate: [authGuard]},
   {path: 'user/register', component: RegistrationComponent},
@@ -58,7 +61,9 @@ const routes: Routes = [
     LoginComponent,
     LogoutComponent,
     UserListComponent,
-    UserAddComponent
+    UserAddComponent,
+    OrderListComponent,
+    UserViewComponent
   ],
   imports: [
     BrowserModule,
