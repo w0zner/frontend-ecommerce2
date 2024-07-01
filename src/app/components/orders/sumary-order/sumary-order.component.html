@@ -82,10 +82,15 @@
             </div>
             <div class="card-body">
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">
+                <li class="list-group-item mb-3">
                   <h5> Total Gs. {{total}}</h5>
                 </li>
-                <a class="btn btn-dark" (click)="generateOrder()">Pagar con Paypal</a>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" role="switch" id="pagoPaypal" (change)="verifChecked()">
+                  <label class="form-check-label" for="pagoPaypal">Paypal</label>
+                </div>
+                <hr>
+                <a class="btn btn-dark" (click)="generateOrder()">Pagar <span *ngIf="pagoPaypal===false">con efectivo</span><span *ngIf="pagoPaypal===true">con Paypal</span></a>
               </ul>
             </div>
           </div>

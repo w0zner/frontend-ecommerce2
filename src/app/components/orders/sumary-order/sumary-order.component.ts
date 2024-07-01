@@ -27,6 +27,7 @@ export class SumaryOrderComponent implements OnInit {
   lastname: string= "";
   email: string= "";
   address: string= "";
+  public pagoPaypal: boolean= false;
 
   orderProducts: OrderProduct[] = []
   userId: number= 0;
@@ -73,6 +74,33 @@ export class SumaryOrderComponent implements OnInit {
       }
     )
 
+    if(this.pagoPaypal===true) {
+      this.paymentWithPaypal()
+    }
+  }
+
+  deleteItem(productId: number){
+    this.cartService.deleteItemCart(productId);
+    this.items= this.cartService.convertToListFromMap();
+    this.total= this.cartService.totalCart();
+  }
+
+  getUser(id: number){
+    this.userService.getUserById(id).subscribe(
+      data=> {
+        this.firstname= data.firstname;
+        this.lastname= data.lastname;
+        this.email= data.email;
+        this.address= data.address;
+      }
+    )
+  }
+
+  verifChecked(){
+    this.pagoPaypal = !this.pagoPaypal;
+  }
+
+  paymentWithPaypal(){
     let urlPayment;
     let dataPayment= new DataPayment("PAYPAL", this.total.toString(), "USD", "COMPRA")
     this.paymentService.getUrlPaypalPayment(dataPayment).subscribe({
@@ -93,23 +121,4 @@ export class SumaryOrderComponent implements OnInit {
       }
     })
   }
-
-  deleteItem(productId: number){
-    this.cartService.deleteItemCart(productId);
-    this.items= this.cartService.convertToListFromMap();
-    this.total= this.cartService.totalCart();
-  }
-
-  getUser(id: number){
-    this.userService.getUserById(id).subscribe(
-      data=> {
-        this.firstname= data.firstname;
-        this.lastname= data.lastname;
-        this.email= data.email;
-        this.address= data.address;
-      }
-    )
-  }
-
-
 }
