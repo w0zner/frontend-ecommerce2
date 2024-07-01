@@ -17,6 +17,11 @@
       </ul>
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
+          <a class="nav-link"
+          data-bs-toggle="modal"
+          data-bs-target="#infoModal" role="button">Acerca de</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" [routerLink]="['/cart/sumary']">Carrito
             <span class="position-absolute top-1 start-99 translate-middle badge rounded-pill bg-danger" *ngIf="count != 0">
               {{count}}
@@ -42,6 +47,24 @@
     </div>
   </div>
 </nav>
+
+<!-- Modal -->
+<div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="infoModalLabel">Información</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          Esto ha sido creado y personalizado por <b>César Rodrigo Ramírez</b>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- <div *ngIf="active">
   <div class="collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
