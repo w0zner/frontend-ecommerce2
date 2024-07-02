@@ -5,12 +5,20 @@
       <!-- <span class="text-body-secondary">Acciones</span> -->
       <div class="list-group list-group-flush">
         <a [routerLink]="['/admin/products']" class="list-group-item list-group-item-action" aria-current="true">
-          Productos
+          <i class="fa fa-archive" aria-hidden="true"></i> Productos
         </a>
-        <a [routerLink]="['/admin/categories']" class="list-group-item list-group-item-action">Categorias</a>
-        <a href="#" class="list-group-item list-group-item-action">Ordenes</a>
-        <a [routerLink]="['/admin/users']" class="list-group-item list-group-item-action">Usuarios</a>
-        <a [routerLink]="['/logout']" class="list-group-item list-group-item-action">Salir</a>
+        <a [routerLink]="['/admin/categories']" class="list-group-item list-group-item-action">
+          <i class="fa fa-th-list" aria-hidden="true"></i> Categorias
+        </a>
+        <a href="#" class="list-group-item list-group-item-action">
+          <i class="fa fa-credit-card" aria-hidden="true"></i> Ordenes
+        </a>
+        <a [routerLink]="['/admin/users']" class="list-group-item list-group-item-action">
+          <i class="fa fa-users" aria-hidden="true"></i> Usuarios
+        </a>
+        <a [routerLink]="['/logout']" class="list-group-item list-group-item-action">
+          <i class="fa fa-sign-out" aria-hidden="true"></i> Salir
+        </a>
         <!-- <a class="list-group-item list-group-item-action disabled" aria-disabled="true">A disabled link item</a> -->
       </div>
     </div>

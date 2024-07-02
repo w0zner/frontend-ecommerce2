@@ -39,7 +39,10 @@
                             class="btn btn-outline-secondary"
                             (click)="verProductosOrden(item.id)"
                             data-bs-toggle="modal"
-                            data-bs-target="#detailModal">Ver</button>
+                            data-bs-target="#detailModal">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                Ver
+                            </button>
                         </td>
                     </tr>
                 </tbody>
@@ -81,7 +84,7 @@
             </table>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i>Cerrar</button>
         </div>
       </div>
     </div>

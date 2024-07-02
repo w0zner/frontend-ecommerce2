@@ -16,7 +16,7 @@
     <div class="card" >
         <div class="card-header d-flex justify-content-between">
           <h4>Usuarios</h4>
-          <a class="btn btn-outline-primary" routerLink="/admin/users/register">Agregar Usuarios</a>
+          <a class="btn btn-outline-primary" routerLink="/admin/users/register"><i class="fa fa-plus-square" aria-hidden="true"></i> Agregar Usuarios</a>
         </div>
         <div class="card-body">
             <table class="table">
@@ -38,8 +38,8 @@
                         <td>{{item.lastname}}</td>
                         <td>{{item.userType}}</td>
                         <td>{{item.username}}</td>
-                        <td><button class="btn btn-outline-secondary" [routerLink]="['/admin/users/update/', item.id]" [disabled]="logged!=item.id">Ver</button> </td>
-                        <td><button class="btn btn-outline-warning">Estado</button>
+                        <td><button class="btn btn-outline-secondary" [routerLink]="['/admin/users/update/', item.id]" [disabled]="logged!=item.id"><i class="fa fa-eye" aria-hidden="true"></i> Ver</button> </td>
+                        <td><button class="btn btn-outline-warning"><i class="fa fa-refresh" aria-hidden="true"></i> Estado</button>
                     </tr>
                 </tbody>
             </table>
