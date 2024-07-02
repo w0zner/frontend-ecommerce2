@@ -40,7 +40,7 @@ export class UserAddComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getProductById();
+    this.getUserById();
   }
 
   onSubmit() {
@@ -66,7 +66,7 @@ export class UserAddComponent implements OnInit {
       })
   }
 
-  getProductById() {
+  getUserById() {
     this.activatedRoute.params.subscribe(
       prod => {
         let id = prod['id'];

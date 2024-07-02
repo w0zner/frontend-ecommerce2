@@ -4,32 +4,30 @@ import { Order } from 'src/app/common/order';
 import { OrderProduct } from 'src/app/common/order-product';
 import { HomeService } from 'src/app/services/home.service';
 import { OrderService } from 'src/app/services/order.service';
-import { ProductService } from 'src/app/services/product.service';
 import { SessionStorageService } from 'src/app/services/session-storage.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-order-list',
-  templateUrl: './order-list.component.html',
-  styleUrls: ['./order-list.component.css']
+  selector: 'app-admin-order-list',
+  templateUrl: './admin-order-list.component.html',
+  styleUrls: ['./admin-order-list.component.css']
 })
-export class OrderListComponent implements OnInit{
+export class AdminOrderListComponent implements OnInit {
 
   orders: Order[] = [];
-  userId: number= 0;
+  nombreUsuario: string="";
   orderProducts: OrderProduct[] = []
   order: any
   nombreProducto: string=""
 
-  constructor(private orderService: OrderService, private sesionStorage: SessionStorageService, private homeService: HomeService, private toastr: ToastrService){
-    this.userId= this.sesionStorage.getItem('userData').id;
-  }
+  constructor(private orderService: OrderService, private sesionStorage: SessionStorageService, private homeService: HomeService, private toastr: ToastrService, private userService: UserService){}
 
   ngOnInit(): void {
-    this.listOrdersByUser(this.userId)
+    this.listOrders()
   }
 
-  listOrdersByUser(id: number){
-    this.orderService.getOrderByUser(id).subscribe({
+  listOrders(){
+    this.orderService.getOrders().subscribe({
       next: (data)=> {
         this.orders= data
       },
@@ -49,5 +47,8 @@ export class OrderListComponent implements OnInit{
     })
   }
 
+  getItemClass(item: any): string{
+    return item?.orderState === "CONFIRMED" ? 'table-success' : 'table-secondary';
+  }
 
 }

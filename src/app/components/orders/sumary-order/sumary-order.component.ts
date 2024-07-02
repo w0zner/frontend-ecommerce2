@@ -40,12 +40,13 @@ export class SumaryOrderComponent implements OnInit {
     private sesionStorage: SessionStorageService,
     private router: Router,
     private paymentService: PaymentService
-  ){}
+  ){
+    this.userId= this.sesionStorage.getItem('userData').id;
+  }
 
   ngOnInit(): void {
       this.items= this.cartService.convertToListFromMap();
       this.total= this.cartService.totalCart();
-      this.userId= this.sesionStorage.getItem('userData').id;
       this.getUser(this.userId);
   }
 

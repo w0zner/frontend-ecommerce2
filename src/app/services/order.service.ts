@@ -29,5 +29,9 @@ export class OrderService {
     return this.http.get<Order>(API_URL + this.endpoint + "/" + id, { headers: this.header.headers })
   }
 
+  getOrders():Observable<Order[]> {
+    return this.http.get<Order[]>(API_URL + this.endpoint, {headers: this.header.headers})
+  }
+
 
 }

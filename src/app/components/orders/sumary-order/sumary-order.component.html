@@ -90,12 +90,12 @@
                   <label class="form-check-label" for="pagoPaypal">Paypal</label>
                 </div>
                 <hr>
-                <a class="btn btn-dark" (click)="generateOrder()">
+                <button class="btn btn-dark" (click)="generateOrder()" [disabled]="items.length==0">
                   <i class="fa fa-credit-card" aria-hidden="true"></i>
-                  Pagar 
+                  Pagar
                   <span *ngIf="pagoPaypal===false">con efectivo</span>
                   <span *ngIf="pagoPaypal===true">con Paypal</span>
-                </a>
+                </button>
               </ul>
             </div>
           </div>

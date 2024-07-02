@@ -25,7 +25,7 @@
               <img src="{{item.urlImage}}">
               <div class="product-information">
                 <h2 class="card-text">{{item.name}}</h2>
-                <div class="price">Gs. {{item.price}}</div>
+                <div class="price">{{item.price | currency:'PYG ':'symbol':'1.0-2'}}</div>
                 <div class="product-show">
                   <a [routerLink]="['/product/detail', item.id]" class="primary-btn" >Ver producto</a>
                 </div>
